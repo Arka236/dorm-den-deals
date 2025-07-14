@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "./ProductCard";
+import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-banner.jpg";
 import mattressProduct from "@/assets/mattress-product.jpg";
 import pillowsProduct from "@/assets/pillows-product.jpg";
@@ -142,8 +143,8 @@ export function HomePage() {
             <p className="text-lg md:text-xl mb-8 text-gray-200 animate-fade-in">
               Premium mattresses, pillows, and toiletries designed for student life
             </p>
-            <Button size="lg" className="button-gradient text-lg px-8 py-6 animate-fade-in">
-              Shop Now
+            <Button size="lg" className="button-gradient text-lg px-8 py-6 animate-fade-in" asChild>
+              <Link to="#products">Shop Now</Link>
             </Button>
           </div>
         </div>
@@ -193,7 +194,7 @@ export function HomePage() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {sortedProducts.map((product) => (
             <ProductCard
               key={product.id}

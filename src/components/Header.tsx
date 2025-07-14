@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, ShoppingCart, User, Moon, Sun, Menu } from "lucide-react";
+import { Search, ShoppingCart, User, Moon, Sun, Menu, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTheme } from "@/components/ThemeProvider";
@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -74,14 +75,16 @@ export function Header({ onToggleSidebar, cartItemsCount = 0 }: HeaderProps) {
           </Button>
 
           {/* Cart */}
-          <Button variant="ghost" size="icon" className="relative transition-smooth hover:bg-accent">
-            <ShoppingCart className="h-5 w-5" />
-            {cartItemsCount > 0 && (
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-gradient-primary text-xs animate-pulse-glow">
-                {cartItemsCount}
-              </Badge>
-            )}
-            <span className="sr-only">Shopping cart</span>
+          <Button variant="ghost" size="icon" className="relative transition-smooth hover:bg-accent" asChild>
+            <Link to="/cart">
+              <ShoppingCart className="h-5 w-5" />
+              {cartItemsCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-gradient-primary text-xs animate-pulse-glow">
+                  {cartItemsCount}
+                </Badge>
+              )}
+              <span className="sr-only">Shopping cart</span>
+            </Link>
           </Button>
 
           {/* User menu */}
@@ -93,17 +96,29 @@ export function Header({ onToggleSidebar, cartItemsCount = 0 }: HeaderProps) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                Profile
+              <DropdownMenuItem asChild>
+                <Link to="/account">
+                  <User className="mr-2 h-4 w-4" />
+                  Profile
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Orders
+              <DropdownMenuItem asChild>
+                <Link to="/orders">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  Orders
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/wishlist">
+                  <Heart className="mr-2 h-4 w-4" />
+                  Wishlist
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                Sign out
+              <DropdownMenuItem asChild>
+                <Link to="/auth">
+                  Sign in
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

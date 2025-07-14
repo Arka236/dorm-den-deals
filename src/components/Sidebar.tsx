@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -98,9 +99,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   "w-full justify-start transition-smooth",
                   item.current && "bg-gradient-primary text-primary-foreground shadow-md"
                 )}
+                asChild
               >
-                <item.icon className="mr-3 h-5 w-5" />
-                {item.name}
+                <Link to={item.href}>
+                  <item.icon className="mr-3 h-5 w-5" />
+                  {item.name}
+                </Link>
               </Button>
             ))}
           </div>

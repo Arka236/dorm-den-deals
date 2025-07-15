@@ -114,6 +114,16 @@ export function Header({ onToggleSidebar, cartItemsCount = 0 }: HeaderProps) {
                   Wishlist
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/faq">
+                  FAQ
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/reviews">
+                  Reviews
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/auth">

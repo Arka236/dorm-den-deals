@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
 import { Heart, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 import mattressProduct from "@/assets/mattress-product.jpg";
 import pillowsProduct from "@/assets/pillows-product.jpg";
 import toiletriesProduct from "@/assets/toiletries-product.jpg";
@@ -35,8 +36,31 @@ const mockWishlistItems = [
 ];
 
 export default function Wishlist() {
-  const [wishlistItems, setWishlistItems] = useState(mockWishlistItems);
+  const [wishlistItems, setWishlistItems] = useState<typeof mockWishlistItems>([]);
   const [cart, setCart] = useState<string[]>([]);
+
+  // Load wishlist from localStorage on component mount
+  useEffect(() => {
+    const savedWishlist = localStorage.getItem('wishlist');
+    if (savedWishlist) {
+      try {
+        const wishlistIds = JSON.parse(savedWishlist);
+        const filteredItems = mockWishlistItems.filter(item => 
+          wishlistIds.includes(item.id)
+        );
+        setWishlistItems(filteredItems);
+      } catch (error) {
+        console.error('Error loading wishlist:', error);
+        setWishlistItems([]);
+      }
+    }
+  }, []);
+
+  // Save wishlist to localStorage whenever it changes
+  useEffect(() => {
+    const wishlistIds = wishlistItems.map(item => item.id);
+    localStorage.setItem('wishlist', JSON.stringify(wishlistIds));
+  }, [wishlistItems]);
 
   const handleAddToCart = (product: any) => {
     setCart(prev => [...prev, product.id]);
@@ -94,8 +118,8 @@ export default function Wishlist() {
                 <p className="text-muted-foreground mb-6">
                   Start browsing and add items you love to your wishlist
                 </p>
-                <Button className="button-gradient">
-                  Continue Shopping
+                <Button className="button-gradient" asChild>
+                  <Link to="/products">Continue Shopping</Link>
                 </Button>
               </CardContent>
             </Card>

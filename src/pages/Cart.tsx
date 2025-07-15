@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Plus, Minus, Trash2, Tag } from "lucide-react";
+import { Link } from "react-router-dom";
 import mattressProduct from "@/assets/mattress-product.jpg";
 import pillowsProduct from "@/assets/pillows-product.jpg";
 
@@ -206,8 +207,8 @@ export default function Cart() {
                   </CardContent>
                 </Card>
 
-                <Button className="w-full button-gradient py-6 text-lg">
-                  Proceed to Checkout
+                <Button className="w-full button-gradient py-6 text-lg" asChild>
+                  <Link to="/checkout">Proceed to Checkout</Link>
                 </Button>
 
                 {shipping > 0 && (

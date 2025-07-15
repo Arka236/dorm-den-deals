@@ -144,7 +144,7 @@ export function HomePage() {
               Premium mattresses, pillows, and toiletries designed for student life
             </p>
             <Button size="lg" className="button-gradient text-lg px-8 py-6 animate-fade-in" asChild>
-              <Link to="#products">Shop Now</Link>
+              <Link to="/products">Shop Now</Link>
             </Button>
           </div>
         </div>
@@ -155,20 +155,35 @@ export function HomePage() {
         <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between mb-8">
           {/* Category Filters */}
           <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Badge
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className={`cursor-pointer transition-smooth ${
-                  selectedCategory === category 
-                    ? "bg-gradient-primary text-primary-foreground" 
-                    : "hover:bg-accent"
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Badge>
-            ))}
+            {categories.map((category) => 
+              category === "All" ? (
+                <Badge
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  className={`cursor-pointer transition-smooth ${
+                    selectedCategory === category 
+                      ? "bg-gradient-primary text-primary-foreground" 
+                      : "hover:bg-accent"
+                  }`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </Badge>
+              ) : (
+                <Link key={category} to={`/category/${category.toLowerCase()}`}>
+                  <Badge
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    className={`cursor-pointer transition-smooth ${
+                      selectedCategory === category 
+                        ? "bg-gradient-primary text-primary-foreground" 
+                        : "hover:bg-accent"
+                    }`}
+                  >
+                    {category}
+                  </Badge>
+                </Link>
+              )
+            )}
           </div>
 
           {/* Sorting */}

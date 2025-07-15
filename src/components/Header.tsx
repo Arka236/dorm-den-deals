@@ -37,14 +37,14 @@ export function Header({ onToggleSidebar, cartItemsCount = 0 }: HeaderProps) {
         </Button>
 
         {/* Logo */}
-        <div className="mr-6 flex items-center space-x-2">
+        <Link to="/" className="mr-6 flex items-center space-x-2 transition-smooth hover:opacity-80">
           <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
             <span className="text-xl font-bold text-primary-foreground">C</span>
           </div>
           <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
             CollegeEssentials
           </span>
-        </div>
+        </Link>
 
         {/* Search bar */}
         <div className="flex-1 max-w-lg mx-4">

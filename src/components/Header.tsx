@@ -115,6 +115,10 @@ export function Header({ onToggleSidebar, cartItemsCount = 0 }: HeaderProps) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
+                <Link to="/admin">
+                  Admin
+                </Link>
+              <DropdownMenuItem asChild>
                 <Link to="/faq">
                   FAQ
                 </Link>

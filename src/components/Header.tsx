@@ -129,6 +129,11 @@ export function Header({ onToggleSidebar, cartItemsCount = 0 }: HeaderProps) {
                   Reviews
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/about">
+                  About Us
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/auth">

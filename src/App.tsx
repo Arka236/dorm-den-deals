@@ -20,6 +20,7 @@ import Products from "./pages/Products";
 import CategoryPage from "./pages/CategoryPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -43,6 +44,8 @@ const App = () => (
             <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
             <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
             <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+            <Route path="/admin" element={<Admin />} />
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
